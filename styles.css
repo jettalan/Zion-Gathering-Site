@@ -1,0 +1,1041 @@
+/* =========================================================
+   THE ZION GATHERING — theziongathering.com
+   Parchment. Burgundy. Reverent warmth.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --parchment: #F4ECDC;
+  --parchment-deep: #ECE2CC;
+  --parchment-edge: #DDD0B3;
+  --burgundy: #5C1F2E;
+  --burgundy-deep: #3D1320;
+  --burgundy-bright: #7A2A3D;
+  --oxblood: #4A1820;
+  --navy: #1F2A44;
+  --gold: #B08840;
+  --gold-bright: #C9A05A;
+  --ink: #2A1810;
+  --ink-soft: #4A3528;
+  --ink-faint: #7A6753;
+  --hair: rgba(74, 24, 32, 0.15);
+  --hair-deep: rgba(74, 24, 32, 0.3);
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --max: 1140px;
+  --max-narrow: 760px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Subtle parchment texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 10% 0%, rgba(176, 136, 64, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 100%, rgba(92, 31, 46, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+a { color: var(--burgundy); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: var(--gold); }
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.nav-wrap {
+  background: var(--parchment);
+  border-bottom: 1px solid var(--hair);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 40px;
+  max-width: var(--max);
+  margin: 0 auto;
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.nav-brand-mark {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  color: var(--burgundy);
+  line-height: 1;
+}
+
+.nav-brand-tag {
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.nav-links a:hover { color: var(--burgundy); }
+
+.nav-cta {
+  background: var(--burgundy);
+  color: var(--parchment) !important;
+  padding: 10px 22px !important;
+  border-radius: 2px;
+  letter-spacing: 0.18em !important;
+  font-size: 11px !important;
+  transition: background 0.2s ease;
+}
+
+.nav-cta:hover {
+  background: var(--burgundy-deep);
+  color: var(--parchment) !important;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 100px 40px 80px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: "—";
+  margin: 0 14px;
+  color: var(--ink-faint);
+  font-weight: 300;
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 84px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--burgundy);
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.hero-tagline {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-soft);
+  max-width: 660px;
+  margin: 0 auto 48px;
+  line-height: 1.5;
+}
+
+.hero-rule {
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 48px;
+}
+
+/* =========================================================
+   HERO IMAGE / FEATURE PHOTO PLACEHOLDER
+   ========================================================= */
+
+.hero-image,
+.feature-image {
+  width: 100%;
+  height: 480px;
+  background: linear-gradient(135deg, var(--parchment-deep) 0%, var(--parchment-edge) 100%);
+  border: 1px solid var(--hair);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 80px;
+}
+
+.feature-image { height: 380px; }
+
+.hero-image::before,
+.feature-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 60px,
+      rgba(176, 136, 64, 0.04) 60px,
+      rgba(176, 136, 64, 0.04) 61px
+    );
+}
+
+.image-placeholder-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: 16px 36px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--burgundy);
+  color: var(--parchment);
+}
+.btn-primary:hover {
+  background: var(--burgundy-deep);
+  color: var(--parchment);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(92, 31, 46, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--burgundy);
+  border: 1px solid var(--burgundy);
+}
+.btn-secondary:hover {
+  background: var(--burgundy);
+  color: var(--parchment);
+}
+
+.btn-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.section-narrow {
+  max-width: var(--max-narrow);
+  margin: 0 auto;
+  padding: 100px 40px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--burgundy);
+}
+
+.section-heading em {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.section-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-soft);
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 64px;
+  line-height: 1.5;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 56px;
+  opacity: 0.6;
+}
+
+/* =========================================================
+   GATHERING CARDS (home page teasers)
+   ========================================================= */
+
+.gathering-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.gathering-card {
+  background: var(--parchment-deep);
+  border: 1px solid var(--hair);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gathering-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(74, 24, 32, 0.15);
+}
+
+.gathering-card-image {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(135deg, var(--parchment-edge) 0%, var(--ink-faint) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.gathering-card-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 50px,
+      rgba(244, 236, 220, 0.06) 50px,
+      rgba(244, 236, 220, 0.06) 51px
+    );
+}
+
+.gathering-card-image-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--parchment);
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+.gathering-card-body {
+  padding: 36px 32px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.gathering-card-dates {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.gathering-card-title {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--burgundy);
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.gathering-card-location {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-faint);
+  margin-bottom: 20px;
+}
+
+.gathering-card-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  flex: 1;
+}
+
+.gathering-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.gathering-card-link::after {
+  content: "→";
+  font-size: 14px;
+  letter-spacing: 0;
+  transition: transform 0.2s ease;
+}
+
+.gathering-card-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   PRICING TIERS (retreat detail pages)
+   ========================================================= */
+
+.pricing-section {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.pricing-group {
+  margin-bottom: 56px;
+}
+
+.pricing-group-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--burgundy);
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hair);
+}
+
+.pricing-tier {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 32px;
+  padding: 28px 32px;
+  background: var(--parchment-deep);
+  border: 1px solid var(--hair);
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.pricing-tier:hover {
+  border-color: var(--burgundy);
+  transform: translateX(4px);
+}
+
+.pricing-tier-info { display: flex; flex-direction: column; gap: 6px; }
+
+.pricing-tier-name {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.pricing-tier-desc {
+  font-size: 14px;
+  color: var(--ink-faint);
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+.pricing-tier-price {
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--burgundy);
+  white-space: nowrap;
+}
+
+.pricing-tier-price-unit {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-faint);
+  font-weight: 400;
+  margin-left: 4px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: var(--serif);
+}
+
+.pricing-tier-cta {
+  background: var(--burgundy);
+  color: var(--parchment);
+  padding: 12px 24px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+
+.pricing-tier-cta:hover {
+  background: var(--burgundy-deep);
+  color: var(--parchment);
+}
+
+/* Featured tier (private suite, family suite) */
+.pricing-tier-featured {
+  background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+  border-color: var(--burgundy);
+  color: var(--parchment);
+}
+
+.pricing-tier-featured .pricing-tier-name { color: var(--parchment); }
+.pricing-tier-featured .pricing-tier-desc { color: rgba(244, 236, 220, 0.75); }
+.pricing-tier-featured .pricing-tier-price { color: var(--gold-bright); }
+.pricing-tier-featured .pricing-tier-price-unit { color: rgba(244, 236, 220, 0.6); }
+.pricing-tier-featured .pricing-tier-cta {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+}
+.pricing-tier-featured .pricing-tier-cta:hover {
+  background: var(--gold-bright);
+  color: var(--burgundy-deep);
+}
+
+/* =========================================================
+   RETREAT DETAILS (presenters, schedule, etc.)
+   ========================================================= */
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  margin: 64px 0;
+}
+
+.detail-card {
+  text-align: center;
+  padding: 40px 24px;
+  background: var(--parchment-deep);
+  border: 1px solid var(--hair);
+}
+
+.detail-card-icon {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.detail-card-label {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.detail-card-value {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--burgundy);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.presenters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.presenter {
+  text-align: center;
+}
+
+.presenter-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--parchment-edge) 0%, var(--ink-faint) 100%);
+  margin: 0 auto 20px;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--hair-deep);
+}
+
+.presenter-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 25px,
+      rgba(244, 236, 220, 0.08) 25px,
+      rgba(244, 236, 220, 0.08) 26px
+    );
+}
+
+.presenter-name {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.presenter-title {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+
+/* =========================================================
+   TESTIMONIALS
+   ========================================================= */
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.testimonial {
+  background: var(--parchment-deep);
+  border: 1px solid var(--hair);
+  padding: 40px 36px;
+  position: relative;
+}
+
+.testimonial::before {
+  content: "\201C";
+  font-family: var(--serif);
+  font-size: 100px;
+  font-style: italic;
+  color: var(--gold);
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.testimonial-text {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 24px 0 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-attribution {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--hair);
+  padding-top: 20px;
+}
+
+.testimonial-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--parchment-edge), var(--ink-faint));
+  flex-shrink: 0;
+}
+
+.testimonial-name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.testimonial-meta {
+  font-size: 12px;
+  color: var(--ink-faint);
+  letter-spacing: 0.05em;
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* =========================================================
+   PROSE / RICH CONTENT (about, retreat descriptions)
+   ========================================================= */
+
+.prose {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.prose p { margin-bottom: 22px; }
+
+.prose p:first-of-type::first-letter {
+  font-family: var(--serif);
+  font-size: 56px;
+  float: left;
+  line-height: 0.9;
+  margin: 6px 12px 0 0;
+  color: var(--burgundy);
+  font-weight: 500;
+}
+
+.prose strong { color: var(--ink); font-weight: 600; }
+.prose em { color: var(--ink); font-style: italic; }
+
+.prose h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--burgundy);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+
+.prose h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  margin: 36px 0 14px;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 8px 0 8px 28px;
+  margin: 32px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 21px;
+  color: var(--burgundy);
+  line-height: 1.5;
+}
+
+.prose ul {
+  margin: 16px 0 24px 24px;
+  list-style: none;
+}
+
+.prose li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+}
+
+.prose li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 14px;
+}
+
+/* =========================================================
+   CALLOUT / NOTICE BLOCKS
+   ========================================================= */
+
+.notice {
+  background: rgba(176, 136, 64, 0.1);
+  border-left: 3px solid var(--gold);
+  padding: 24px 28px;
+  margin: 32px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--burgundy);
+  line-height: 1.6;
+}
+
+.cta-block {
+  background: var(--burgundy);
+  color: var(--parchment);
+  padding: 80px 40px;
+  text-align: center;
+  margin: 80px 0;
+}
+
+.cta-block-heading {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 400;
+  margin-bottom: 16px;
+  color: var(--parchment);
+}
+
+.cta-block-heading em {
+  font-style: italic;
+  color: var(--gold-bright);
+}
+
+.cta-block-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  color: rgba(244, 236, 220, 0.85);
+  margin-bottom: 36px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-block .btn-primary {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+}
+.cta-block .btn-primary:hover {
+  background: var(--gold-bright);
+  color: var(--burgundy-deep);
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+  background: var(--burgundy-deep);
+  color: rgba(244, 236, 220, 0.7);
+  padding: 60px 40px 40px;
+  margin-top: 80px;
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 48px;
+}
+
+.footer-brand-mark {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-style: italic;
+  color: var(--parchment);
+  margin-bottom: 8px;
+}
+
+.footer-brand-tag {
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.footer-brand-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(244, 236, 220, 0.65);
+  max-width: 380px;
+}
+
+.footer-col-title {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: rgba(244, 236, 220, 0.7);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover { color: var(--parchment); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(244, 236, 220, 0.1);
+  padding-top: 28px;
+  text-align: center;
+  max-width: var(--max);
+  margin: 0 auto;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(244, 236, 220, 0.5);
+}
+
+/* =========================================================
+   PAGE-SPECIFIC HEADERS (for non-home pages)
+   ========================================================= */
+
+.page-header {
+  text-align: center;
+  padding: 80px 40px 60px;
+  max-width: var(--max-narrow);
+  margin: 0 auto;
+}
+
+.page-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.page-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--burgundy);
+  margin-bottom: 20px;
+}
+
+.page-title em { font-style: italic; color: var(--ink); }
+
+.page-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 21px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.page-rule {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 36px auto 0;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .nav { padding: 18px 20px; flex-wrap: wrap; gap: 12px; }
+  .nav-links { gap: 18px; }
+  .nav-cta { padding: 8px 16px !important; }
+  .hero { padding: 60px 24px 60px; }
+  .section, .section-narrow, .pricing-section { padding: 60px 24px; }
+  .pricing-tier {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: center;
+  }
+  .pricing-tier-info { align-items: center; }
+  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+  .hero-image, .feature-image { height: 280px; }
+  .gathering-card-image { height: 220px; }
+  .page-header { padding: 50px 24px 40px; }
+}
