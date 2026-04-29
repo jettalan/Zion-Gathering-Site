@@ -16,6 +16,11 @@
       <span class="nav-brand-mark">The Zion Gathering</span>
       <span class="nav-brand-tag">By Zion Media</span>
     </a>
+    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('nav-links-open'); this.classList.toggle('nav-hamburger-open')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <div class="nav-links">
       <a href="/upcoming">Gatherings</a>
       <a href="/about">About</a>
@@ -40,7 +45,7 @@
   <section class="section">
     <div class="gathering-grid">
 
-      <div class="gathering-card">
+      <a href="/upcoming/bear-lake" class="gathering-card">
         <div class="gathering-card-image" style="background: none;">
           <img src="/images/bear-lake-card.png" alt="Bear Lake Gathering — May 21-24, 2026"
                style="width: 100%; height: 100%; object-fit: cover; display: block;">
@@ -50,13 +55,13 @@
           <h3 class="gathering-card-title">Bear Lake Gathering</h3>
           <p class="gathering-card-location">The Monster Mansion at Bear Lake &middot; Utah</p>
           <p class="gathering-card-text">
-            Three days of deep scripture study, doctrinal teaching, and unhurried conversation with the voices from Zion Media. All inclusive. Lodging from $99 day pass to $1,599 private suite.
+            Three days of deep scripture study, doctrinal teaching, and unhurried conversation with the voices from Zion Media. All inclusive.
           </p>
-          <a href="/upcoming/bear-lake" class="gathering-card-link">View Details &amp; Book</a>
+          <span class="gathering-card-link">View Details &amp; Book</span>
         </div>
-      </div>
+      </a>
 
-      <div class="gathering-card">
+      <a href="/upcoming/adam-ondi-ahman" class="gathering-card">
         <div class="gathering-card-image" style="background: none;">
           <img src="/images/adam-ondi-ahman-card.png" alt="Adam-ondi-Ahman Gathering — September 19-22, 2026"
                style="width: 100%; height: 100%; object-fit: cover; display: block;">
@@ -66,11 +71,11 @@
           <h3 class="gathering-card-title">Adam-ondi-Ahman Gathering</h3>
           <p class="gathering-card-location">The Hamilton Hotel &middot; Missouri</p>
           <p class="gathering-card-text">
-            A Solemn Assembly on the valley where Adam will return. Day attendance from $299, full experience with lodging $630, family suite $2,500. Fifty spots only.
+            A Solemn Assembly on the valley where Adam will return. Fifty spots only.
           </p>
-          <a href="/upcoming/adam-ondi-ahman" class="gathering-card-link">View Details &amp; Book</a>
+          <span class="gathering-card-link">View Details &amp; Book</span>
         </div>
-      </div>
+      </a>
 
     </div>
   </section>
