@@ -719,6 +719,20 @@ a:hover { color: var(--gold); }
     );
 }
 
+/* When a real photo is inside, suppress the stripe overlay and gradient background */
+.presenter-photo:has(img)::before {
+  display: none;
+}
+
+.presenter-photo:has(img) {
+  background: var(--parchment-deep);
+}
+
+.presenter-photo img {
+  position: relative;
+  z-index: 1;
+}
+
 .presenter-name {
   font-family: var(--serif);
   font-size: 19px;
