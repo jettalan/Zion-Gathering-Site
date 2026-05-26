@@ -1142,3 +1142,89 @@ a:hover { color: var(--gold); }
   .gathering-card-image { height: 220px; }
   .page-header { padding: 50px 24px 40px; }
 }
+
+/* =========================================================
+   PAST GATHERINGS — banner + card variant
+   ========================================================= */
+
+/* The "this gathering has concluded" notice on archived retreat pages */
+.past-banner {
+  background: var(--burgundy);
+  color: var(--parchment);
+  border-bottom: 1px solid var(--burgundy-deep);
+}
+
+.past-banner-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.past-banner-label {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.past-banner-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--parchment);
+  flex: 1;
+  min-width: 240px;
+}
+
+.past-banner-link {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.past-banner-link:hover {
+  color: var(--parchment);
+}
+
+/* The "Past Gatherings" section — subtle visual differentiation from upcoming */
+.section-past {
+  background: rgba(74, 24, 32, 0.03);
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+}
+
+/* Single-card layout for past gatherings (one card today, but room to grow) */
+.past-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Slight visual subdue for past cards — desaturated image, muted accent */
+.gathering-card-past .gathering-card-image img {
+  filter: saturate(0.7) brightness(0.92);
+  transition: filter 0.3s ease;
+}
+
+.gathering-card-past:hover .gathering-card-image img {
+  filter: saturate(1) brightness(1);
+}
+
+.past-badge {
+  color: var(--ink-faint) !important;
+}

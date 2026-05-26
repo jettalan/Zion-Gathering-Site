@@ -1,0 +1,14 @@
+HEADS UP — IF YOU ALREADY APPLIED THE PREVIOUS ZIP:
+
+The previous zip placed files at:
+  upcoming/men-of-zion/index.html
+  images/men-of-zion-card.svg
+
+Those are now renamed. Before extracting this new zip on top of your repo, delete:
+  upcoming/men-of-zion/       (whole folder)
+  images/men-of-zion-card.svg
+
+Otherwise both the old and new versions will end up sitting in the repo.
+
+If you have NOT applied the previous zip yet (i.e. you are starting from the original
+Bear-Lake-still-live state), just extract this on top — no cleanup needed.
