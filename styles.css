@@ -493,9 +493,9 @@ a:hover { color: var(--gold); }
 }
 
 .gathering-card-text {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.7;
-  color: var(--ink-soft);
+  color: var(--ink);
   margin-bottom: 28px;
   flex: 1;
 }
@@ -827,12 +827,12 @@ a:hover { color: var(--gold); }
    ========================================================= */
 
 .prose {
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.8;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
-.prose p { margin-bottom: 22px; }
+.prose p { margin-bottom: 26px; }
 
 .prose p:first-of-type::first-letter {
   font-family: var(--serif);
@@ -866,24 +866,25 @@ a:hover { color: var(--gold); }
 
 .prose blockquote {
   border-left: 3px solid var(--gold);
-  padding: 8px 0 8px 28px;
+  padding: 10px 0 10px 32px;
   margin: 32px 0;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 21px;
+  font-size: 23px;
   color: var(--burgundy);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .prose ul {
-  margin: 16px 0 24px 24px;
+  margin: 20px 0 28px 24px;
   list-style: none;
 }
 
 .prose li {
   position: relative;
   padding-left: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  line-height: 1.7;
 }
 
 .prose li::before {
@@ -1066,10 +1067,10 @@ a:hover { color: var(--gold); }
 .page-subtitle {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 21px;
-  color: var(--ink-soft);
-  line-height: 1.5;
-  max-width: 560px;
+  font-size: 22px;
+  color: var(--ink);
+  line-height: 1.55;
+  max-width: 600px;
   margin: 0 auto;
 }
 
