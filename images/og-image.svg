@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" preserveAspectRatio="xMidYMid slice" role="img" aria-label="The Zion Gathering — Sacred Restoration Retreats by Zion Media">
+
+  <defs>
+    <linearGradient id="parch" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#F6EEDF"/>
+      <stop offset="60%" stop-color="#F4ECDC"/>
+      <stop offset="100%" stop-color="#EBE0C9"/>
+    </linearGradient>
+    <pattern id="grain" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+      <rect width="120" height="120" fill="transparent"/>
+      <line x1="0" y1="0" x2="120" y2="120" stroke="#D4C4A4" stroke-width="0.4" opacity="0.18"/>
+      <line x1="120" y1="0" x2="0" y2="120" stroke="#D4C4A4" stroke-width="0.4" opacity="0.18"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#parch)"/>
+  <rect width="1200" height="630" fill="url(#grain)"/>
+
+  <rect x="38" y="38" width="1124" height="554" fill="none" stroke="#B08840" stroke-width="0.7" opacity="0.6"/>
+  <rect x="46" y="46" width="1108" height="538" fill="none" stroke="#B08840" stroke-width="0.4" opacity="0.35"/>
+
+  <g transform="translate(600, 162)">
+    <circle cx="0" cy="0" r="44" stroke="#B08840" stroke-width="1" fill="none"/>
+    <circle cx="0" cy="0" r="50" stroke="#B08840" stroke-width="0.5" fill="none" opacity="0.5"/>
+    <path d="M -20 16 L 0 -20 L 20 16 Z" stroke="#4A1820" stroke-width="1.7" fill="none" stroke-linejoin="miter"/>
+  </g>
+
+  <text x="600" y="360" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="94" fill="#4A1820" font-weight="500" letter-spacing="-0.5">
+    The Zion Gathering
+  </text>
+
+  <g stroke="#B08840" stroke-width="0.9" fill="none">
+    <line x1="455" y1="410" x2="585" y2="410"/>
+    <line x1="615" y1="410" x2="745" y2="410"/>
+  </g>
+  <path d="M 600 401 L 609 410 L 600 419 L 591 410 Z" fill="#B08840"/>
+
+  <text x="600" y="468" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="32" fill="#5C1F2E" font-style="italic" letter-spacing="0.5">
+    Sacred Restoration Retreats
+  </text>
+
+  <text x="600" y="555" text-anchor="middle"
+        font-family="'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+        font-size="14" fill="#B08840" letter-spacing="10" font-weight="500">
+    BY ZION MEDIA
+  </text>
+</svg>
