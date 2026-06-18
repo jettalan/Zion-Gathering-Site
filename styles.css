@@ -1229,3 +1229,87 @@ a:hover { color: var(--gold); }
 .past-badge {
   color: var(--ink-faint) !important;
 }
+
+/* =========================================================
+   STICKY RESERVE BAR — retreat pages with pricing
+   Floats with the reader, then hides once the pricing
+   section is reached (toggled by IntersectionObserver).
+   ========================================================= */
+.reserve-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-deep) 100%);
+  border-top: 1px solid var(--gold);
+  box-shadow: 0 -8px 30px rgba(61, 19, 32, 0.3);
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.reserve-bar-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reserve-bar-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 13px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.reserve-bar-label { display: flex; flex-direction: column; gap: 3px; }
+
+.reserve-bar-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--parchment);
+  line-height: 1.05;
+}
+
+.reserve-bar-meta {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  font-weight: 600;
+}
+
+.reserve-bar-actions { display: flex; gap: 12px; align-items: center; flex-shrink: 0; }
+
+.reserve-bar-btn {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.reserve-bar-btn-primary { background: var(--gold); color: var(--burgundy-deep); }
+.reserve-bar-btn-primary:hover { background: var(--gold-bright); color: var(--burgundy-deep); transform: translateY(-2px); }
+
+.reserve-bar-btn-secondary { background: transparent; color: var(--parchment); border: 1px solid rgba(244, 236, 220, 0.45); }
+.reserve-bar-btn-secondary:hover { background: rgba(244, 236, 220, 0.1); color: var(--parchment); border-color: var(--parchment); }
+
+@media (max-width: 768px) {
+  .reserve-bar-inner { padding: 10px 16px; gap: 12px; }
+  .reserve-bar-label { display: none; }
+  .reserve-bar-actions { width: 100%; gap: 10px; }
+  .reserve-bar-btn { flex: 1; text-align: center; padding: 13px 8px; letter-spacing: 0.1em; }
+}
