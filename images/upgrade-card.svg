@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label="The Upgrade — Milestone to Liahona — plus $5,000">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="36%" r="80%">
+      <stop offset="0%" stop-color="#7A2A3D"/>
+      <stop offset="55%" stop-color="#5C1F2E"/>
+      <stop offset="100%" stop-color="#3D1320"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+
+  <!-- corner brackets -->
+  <g stroke="#B08840" stroke-width="1.5" fill="none" stroke-linecap="square">
+    <path d="M 56 110 L 56 56 L 110 56"/>
+    <path d="M 1170 56 L 1224 56 L 1224 110"/>
+    <path d="M 56 610 L 56 664 L 110 664"/>
+    <path d="M 1170 664 L 1224 664 L 1224 610"/>
+  </g>
+
+  <!-- eyebrow -->
+  <text x="640" y="134" text-anchor="middle" font-family="'Inter', -apple-system, sans-serif" font-size="20" letter-spacing="7" fill="#B08840" font-weight="500">FREQUENT FLYER PROGRAM</text>
+
+  <!-- icon: ascending double chevron -->
+  <g transform="translate(640, 230)" stroke="#B08840" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M -42 8 L 0 -32 L 42 8"/>
+    <path d="M -42 50 L 0 10 L 42 50"/>
+  </g>
+
+  <!-- title -->
+  <text x="640" y="448" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="112" fill="#F4ECDC" font-weight="500" letter-spacing="-1">The Upgrade</text>
+
+  <!-- scope: Milestone to Liahona -->
+  <text x="640" y="516" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="40" fill="#B08840" font-style="italic">Milestone &#8594; Liahona</text>
+
+  <!-- divider with diamond -->
+  <g stroke="#B08840" stroke-width="1" fill="none">
+    <line x1="498" y1="556" x2="600" y2="556"/>
+    <line x1="680" y1="556" x2="782" y2="556"/>
+  </g>
+  <path d="M 640 546 L 652 556 L 640 566 L 628 556 Z" fill="#B08840"/>
+
+  <!-- price -->
+  <text x="640" y="624" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="38" fill="#F4ECDC" font-weight="500">+ $5,000<tspan fill="#B08840" font-style="italic" font-size="30">&#160;&#160;&#183;&#160;&#160;one-time</tspan></text>
+</svg>

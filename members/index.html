@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Member Area — The Zion Gathering</title>
+<meta name="description" content="The members area for Frequent Flyer members. Log in to your membership and RSVP to upcoming gatherings.">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F4ECDC'/%3E%3Cpath d='M16 48 L32 16 L48 48 Z' fill='none' stroke='%235C1F2E' stroke-width='3'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="nav-wrap">
+  <nav class="nav">
+    <a href="/" class="nav-brand">
+      <span class="nav-brand-mark">The Zion Gathering</span>
+      <span class="nav-brand-tag">By Zion Media</span>
+    </a>
+    <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('nav-links-open'); this.classList.toggle('nav-hamburger-open')">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-links">
+      <a href="/upcoming">Gatherings</a>
+      <a href="/frequent-flyer">Frequent Flyer</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <!-- KAJABI LOGIN URL — replace href with your Zion Media member login link (e.g. https://zion-media.mykajabi.com/login) -->
+      <a href="#member-login" class="nav-cta">Member Login</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="page-eyebrow">Member Area</div>
+    <h1 class="page-title">Welcome, <em>member</em>.</h1>
+    <p class="page-subtitle">
+      Your standing seat at every gathering. Sign in to manage your membership, and RSVP below the moment a gathering opens.
+    </p>
+    <div class="page-rule"></div>
+  </section>
+
+  <!-- YOUR MEMBERSHIP (KAJABI LOGIN) -->
+  <section class="section" style="padding-top: 40px; padding-bottom: 60px;">
+    <div style="max-width: 760px; margin: 0 auto; background: var(--parchment-deep); border: 1px solid var(--hair); padding: 40px 38px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+      <div style="flex: 1; min-width: 260px;">
+        <div style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px;">Your Membership</div>
+        <div style="font-family: var(--serif); font-size: 24px; color: var(--burgundy); font-weight: 500; line-height: 1.25;">Sign in to your Zion Media account</div>
+        <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-top: 8px;">Your Milestone or Liahona membership lives in the account created when you joined. Sign in to view it and update your details.</p>
+      </div>
+      <!-- KAJABI LOGIN URL — replace href below -->
+      <a href="#member-login" class="btn-primary" style="flex-shrink: 0;">Member Login</a>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="section section-past" id="rsvp">
+    <div class="section-eyebrow">Reserve Your Place</div>
+    <h2 class="section-heading">RSVP to a <em>gathering</em>.</h2>
+    <p class="section-sub">
+      When a gathering opens, reserve your place &mdash; and your guest&rsquo;s &mdash; right here. Seats are held in the order they come in, so the sooner the better.
+    </p>
+
+    <!-- RSVP form: embedded live Airtable form (base "Zion Gathering RSVPs" -> RSVP form view). -->
+    <div class="rsvp-embed" style="max-width: 720px; margin: 8px auto 0;">
+      <iframe title="Zion Gathering RSVP form" class="airtable-embed" src="https://airtable.com/embed/app3RrMYsLOHUnyHM/shrEEIj3vpVLIHnPK" frameborder="0" width="100%" height="880" style="background: var(--parchment); border: 1px solid var(--hair); border-radius: 2px;"></iframe>
+      <p style="text-align: center; font-size: 14px; color: var(--ink-faint); margin-top: 16px;">
+        Form not loading? <a href="https://airtable.com/app3RrMYsLOHUnyHM/shrEEIj3vpVLIHnPK" target="_blank" rel="noopener">Open the RSVP form in a new tab &rarr;</a>
+      </p>
+    </div>
+
+    <p style="text-align: center; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ink-faint); max-width: 600px; margin: 32px auto 0;">
+      Currently open: the <a href="/upcoming/sons-of-levi">Sons of Levi Gathering</a> (August 2026). International gatherings open to Liahona members as each is announced.
+    </p>
+  </section>
+
+  <!-- HOW RSVP WORKS -->
+  <section class="section">
+    <div class="section-eyebrow">How It Works</div>
+    <h2 class="section-heading">Three steps. <em>That&rsquo;s it.</em></h2>
+
+    <div class="detail-grid" style="margin-bottom: 0;">
+      <div class="detail-card">
+        <div class="detail-card-icon">i</div>
+        <div class="detail-card-label">Sign In</div>
+        <div class="detail-card-value" style="font-size: 18px;">Log in to the account you created when you joined.</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">ii</div>
+        <div class="detail-card-label">Submit the Form</div>
+        <div class="detail-card-value" style="font-size: 18px;">Pick the gathering, add your guest, note your room.</div>
+      </div>
+      <div class="detail-card">
+        <div class="detail-card-icon">iii</div>
+        <div class="detail-card-label">We Confirm</div>
+        <div class="detail-card-value" style="font-size: 18px;">Your place is held and confirmed by email.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA -->
+  <section class="cta-block">
+    <h2 class="cta-block-heading">Need a hand with your <em>reservation</em>?</h2>
+    <p class="cta-block-text">
+      Reach out anytime &mdash; we are glad to help with membership questions, travel, or your RSVP.
+    </p>
+    <a href="/contact" class="btn-primary">Contact Us</a>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-mark">The Zion Gathering</div>
+      <div class="footer-brand-tag">By Zion Media</div>
+      <p class="footer-brand-text">
+        Sacred retreats for serious students of the restoration. Brought to you by the Zion Media community.
+      </p>
+    </div>
+    <div>
+      <div class="footer-col-title">Gatherings</div>
+      <div class="footer-links">
+        <a href="/upcoming/sons-of-levi">Sons of Levi</a>
+        <a href="/upcoming/adam-ondi-ahman">Nauvoo / Adam-ondi-Ahman</a>
+        <a href="/frequent-flyer">Frequent Flyer Program</a>
+        <a href="/upcoming">All Upcoming</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Members</div>
+      <div class="footer-links">
+        <a href="/members">Member Area</a>
+        <a href="/members#rsvp">RSVP to a Gathering</a>
+        <a href="/contact">Contact</a>
+        <a href="https://www.youtube.com/@ZionMedia_" target="_blank" rel="noopener">Zion Media on YouTube</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 The Zion Gathering &middot; Brought to you by Zion Media
+  </div>
+</footer>
+
+</body>
+</html>
