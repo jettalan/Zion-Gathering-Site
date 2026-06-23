@@ -5,9 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>Member Area — The Zion Gathering</title>
-<meta name="description" content="The members area for Frequent Flyer members. Log in to your membership and RSVP to upcoming gatherings.">
+<meta name="description" content="The members area for Frequent Flyer members. Sign in to RSVP to upcoming gatherings.">
 <link rel="stylesheet" href="/styles.css">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23F4ECDC'/%3E%3Cpath d='M16 48 L32 16 L48 48 Z' fill='none' stroke='%235C1F2E' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+  .auth-card { max-width: 460px; margin: 0 auto; background: var(--parchment-deep); border: 1px solid var(--hair); padding: 40px 38px; }
+  .auth-card h2 { font-family: var(--serif); font-size: 26px; color: var(--burgundy); font-weight: 500; margin: 0 0 6px; }
+  .field { margin-top: 18px; }
+  .field label { display: block; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 7px; font-weight: 600; }
+  .field input, .field select, .field textarea { width: 100%; box-sizing: border-box; padding: 13px 14px; border: 1px solid var(--hair); background: var(--parchment); color: var(--ink); font-size: 16px; font-family: var(--sans); border-radius: 2px; }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); }
+  .full-btn { width: 100%; margin-top: 24px; cursor: pointer; border: none; }
+  .msg { margin-top: 16px; font-size: 14px; line-height: 1.5; }
+  .msg-err { color: #9B2226; }
+  .msg-ok { color: var(--burgundy); }
+  .switch-line { margin-top: 22px; font-size: 14px; color: var(--ink-soft); text-align: center; }
+  .switch-line a { color: var(--burgundy); cursor: pointer; }
+  .tier-pill { display: inline-block; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: var(--parchment); background: var(--burgundy); padding: 6px 16px; border-radius: 999px; }
+  .rsvp-row { border: 1px solid var(--hair); background: var(--parchment); padding: 18px 20px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .rsvp-row-g { font-family: var(--serif); font-size: 19px; color: var(--burgundy); }
+  .rsvp-row-meta { font-size: 13px; color: var(--ink-faint); margin-top: 3px; }
+  .link-btn { background: none; border: none; color: var(--ink-faint); font-size: 13px; cursor: pointer; text-decoration: underline; padding: 0; }
+  .muted { color: var(--ink-faint); }
+  [hidden] { display: none !important; }
+</style>
 </head>
 <body>
 
@@ -18,17 +39,14 @@
       <span class="nav-brand-tag">By Zion Media</span>
     </a>
     <button class="nav-hamburger" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('nav-links-open'); this.classList.toggle('nav-hamburger-open')">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
     <div class="nav-links">
       <a href="/upcoming">Gatherings</a>
       <a href="/frequent-flyer">Frequent Flyer</a>
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
-      <!-- KAJABI LOGIN URL — replace href with your Zion Media member login link (e.g. https://zion-media.mykajabi.com/login) -->
-      <a href="https://zion-media.mykajabi.com/login" class="nav-cta" target="_blank" rel="noopener">My Account</a>
+      <a href="#" id="nav-signout" class="nav-cta" hidden>Sign Out</a>
     </div>
   </nav>
 </header>
@@ -38,88 +56,103 @@
   <!-- PAGE HEADER -->
   <section class="page-header">
     <div class="page-eyebrow">Member Area</div>
-    <h1 class="page-title">Welcome, <em>member</em>.</h1>
-    <p class="page-subtitle">
-      Your standing seat at every gathering. This is your home base &mdash; RSVP below whenever a gathering opens. No sign-in required.
+    <h1 class="page-title">Welcome<em id="hdr-name"></em>.</h1>
+    <p class="page-subtitle" id="hdr-sub">
+      Your standing seat at every gathering &mdash; this is your home base.
     </p>
     <div class="page-rule"></div>
   </section>
 
-  <!-- RSVP -->
-  <section class="section section-past" id="rsvp">
-    <div class="section-eyebrow">Reserve Your Place</div>
-    <h2 class="section-heading">RSVP to a <em>gathering</em>.</h2>
-    <p class="section-sub">
-      When a gathering opens, reserve your place &mdash; and your guest&rsquo;s &mdash; right here. Seats are held in the order they come in, so the sooner the better.
-    </p>
+  <section class="section" id="app" style="padding-top: 24px;">
 
-    <!-- RSVP form: embedded live Airtable form (base "Zion Gathering RSVPs" -> RSVP form view). -->
-    <div class="rsvp-embed" style="max-width: 720px; margin: 8px auto 0;">
-      <iframe id="rsvp-form" title="Zion Gathering RSVP form" class="airtable-embed" src="https://airtable.com/embed/app3RrMYsLOHUnyHM/shrEEIj3vpVLIHnPK?hide_Tier=true" frameborder="0" width="100%" height="880" style="background: var(--parchment); border: 1px solid var(--hair); border-radius: 2px;"></iframe>
-      <p style="text-align: center; font-size: 14px; color: var(--ink-faint); margin-top: 16px;">
-        Form not loading? <a href="https://airtable.com/app3RrMYsLOHUnyHM/shrEEIj3vpVLIHnPK?hide_Tier=true" target="_blank" rel="noopener">Open the RSVP form in a new tab &rarr;</a>
-      </p>
+    <!-- LOADING -->
+    <div id="v-loading" style="text-align:center; color: var(--ink-faint); font-family: var(--serif); font-style: italic; font-size: 18px;">
+      Loading your member area&hellip;
     </div>
-    <!-- Auto-stamp the member's tier (passed as ?tier=Milestone|Liahona from their tier-specific thank-you page) into the Tier field, which stays hidden from the member either way. -->
-    <script>
-      (function () {
-        var f = document.getElementById('rsvp-form');
-        if (!f) return;
-        var tier = new URLSearchParams(window.location.search).get('tier');
-        if (tier === 'Milestone' || tier === 'Liahona') {
-          f.src = 'https://airtable.com/embed/app3RrMYsLOHUnyHM/shrEEIj3vpVLIHnPK?hide_Tier=true&prefill_Tier=' + tier;
-        }
-      })();
-    </script>
 
-    <p style="text-align: center; font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--ink-faint); max-width: 600px; margin: 32px auto 0;">
-      Currently open: the <a href="/upcoming/sons-of-levi">Sons of Levi Gathering</a> (August 2026). International gatherings open to Liahona members as each is announced.
-    </p>
-  </section>
-
-  <!-- HOW RSVP WORKS -->
-  <section class="section">
-    <div class="section-eyebrow">How It Works</div>
-    <h2 class="section-heading">Three steps. <em>That&rsquo;s it.</em></h2>
-
-    <div class="detail-grid" style="margin-bottom: 0;">
-      <div class="detail-card">
-        <div class="detail-card-icon">i</div>
-        <div class="detail-card-label">No Sign-In Needed</div>
-        <div class="detail-card-value" style="font-size: 18px;">RSVP right from the form above &mdash; signing in is only for billing &amp; your account.</div>
-      </div>
-      <div class="detail-card">
-        <div class="detail-card-icon">ii</div>
-        <div class="detail-card-label">Submit the Form</div>
-        <div class="detail-card-value" style="font-size: 18px;">Pick the gathering, add your guest, note your room.</div>
-      </div>
-      <div class="detail-card">
-        <div class="detail-card-icon">iii</div>
-        <div class="detail-card-label">We Confirm</div>
-        <div class="detail-card-value" style="font-size: 18px;">Your place is held and confirmed by email.</div>
+    <!-- SIGNED OUT: SIGN IN / SIGN UP -->
+    <div id="v-auth" hidden>
+      <div class="auth-card">
+        <h2 id="auth-heading">Member sign in</h2>
+        <p class="muted" style="font-size: 15px; line-height: 1.55; margin: 0;">Sign in to RSVP to gatherings. Use the email you joined with.</p>
+        <form id="auth-form" autocomplete="on">
+          <div class="field" id="f-name" hidden>
+            <label for="i-name">Full name</label>
+            <input type="text" id="i-name" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="i-email">Email</label>
+            <input type="email" id="i-email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="i-pass">Password</label>
+            <input type="password" id="i-pass" autocomplete="current-password" required minlength="8">
+          </div>
+          <button type="submit" class="btn-primary full-btn" id="auth-submit">Sign in</button>
+        </form>
+        <div class="msg" id="auth-msg"></div>
+        <div class="switch-line" id="switch-line">
+          New here? <a id="auth-switch">Create your member login</a>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- ACCOUNT & BILLING (KAJABI) — secondary; the site is the member home, Kajabi is only the billing backend -->
-  <section class="section" style="padding-top: 0; padding-bottom: 64px;">
-    <div style="max-width: 760px; margin: 0 auto; background: var(--parchment-deep); border: 1px solid var(--hair); padding: 36px 38px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
-      <div style="flex: 1; min-width: 260px;">
-        <div style="font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px;">Account &amp; Billing</div>
-        <div style="font-family: var(--serif); font-size: 24px; color: var(--burgundy); font-weight: 500; line-height: 1.25;">Manage your account</div>
-        <p style="font-size: 15px; color: var(--ink-soft); line-height: 1.6; margin-top: 8px;">Everything you need is right here on this page. Sign in to your Zion Media account only to update your payment method or view receipts.</p>
+    <!-- SIGNED IN: MEMBER -->
+    <div id="v-member" hidden>
+      <div style="text-align:center; margin-bottom: 8px;"><span class="tier-pill" id="member-tier">Member</span></div>
+
+      <!-- RSVP form -->
+      <div style="max-width: 640px; margin: 28px auto 0;">
+        <div class="section-eyebrow" style="text-align:center;">Reserve Your Place</div>
+        <h2 class="section-heading" style="text-align:center; margin-top: 6px;">RSVP to a <em>gathering</em>.</h2>
+        <form id="rsvp-form" style="margin-top: 22px;">
+          <div class="field">
+            <label for="r-gathering">Gathering</label>
+            <select id="r-gathering" required></select>
+          </div>
+          <div class="field" style="display:flex; align-items:center; gap:10px;">
+            <input type="checkbox" id="r-guest" style="width:auto;">
+            <label for="r-guest" style="margin:0; letter-spacing:0; text-transform:none; font-size:15px; font-weight:400; color:var(--ink);">I&rsquo;m bringing a guest</label>
+          </div>
+          <div class="field" id="f-guestname" hidden>
+            <label for="r-guestname">Guest name</label>
+            <input type="text" id="r-guestname">
+          </div>
+          <div class="field">
+            <label for="r-room">Room preference <span class="muted" style="text-transform:none; letter-spacing:0;">(optional)</span></label>
+            <input type="text" id="r-room">
+          </div>
+          <div class="field">
+            <label for="r-notes">Notes <span class="muted" style="text-transform:none; letter-spacing:0;">(optional)</span></label>
+            <textarea id="r-notes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-btn" id="rsvp-submit">Submit RSVP</button>
+        </form>
+        <div class="msg" id="rsvp-msg"></div>
       </div>
-      <a href="https://zion-media.mykajabi.com/login" class="btn-primary" style="flex-shrink: 0;" target="_blank" rel="noopener">Account &amp; Billing</a>
-    </div>
-  </section>
 
-  <!-- BOTTOM CTA -->
-  <section class="cta-block">
-    <h2 class="cta-block-heading">Need a hand with your <em>reservation</em>?</h2>
-    <p class="cta-block-text">
-      Reach out anytime &mdash; we are glad to help with membership questions, travel, or your RSVP.
-    </p>
-    <a href="/contact" class="btn-primary">Contact Us</a>
+      <!-- Your RSVPs -->
+      <div style="max-width: 640px; margin: 48px auto 0;">
+        <div class="section-eyebrow" style="text-align:center;">Your Reservations</div>
+        <div id="rsvp-list" style="margin-top: 14px;"></div>
+      </div>
+
+      <!-- Account & billing -->
+      <div style="max-width: 640px; margin: 48px auto 0; text-align:center;">
+        <p class="muted" style="font-size: 14px;">Manage your subscription or receipts in your
+          <a href="https://zion-media.mykajabi.com/login" target="_blank" rel="noopener" style="color:var(--burgundy);">Zion Media billing account</a>.</p>
+        <button class="link-btn" id="member-signout" style="margin-top: 8px; font-size: 14px;">Sign out</button>
+      </div>
+    </div>
+
+    <!-- SIGNED IN: NOT A MEMBER -->
+    <div id="v-nonmember" hidden style="max-width: 540px; margin: 0 auto; text-align:center;">
+      <p style="font-family: var(--serif); font-size: 22px; color: var(--burgundy); line-height: 1.4;">You&rsquo;re signed in, but we don&rsquo;t see a Frequent Flyer membership on <span id="nm-email" style="font-style:italic;"></span> yet.</p>
+      <p class="muted" style="font-size: 15px; line-height: 1.6; margin-top: 12px;">If you just joined, give it a moment and refresh &mdash; or make sure you signed in with the same email you purchased with.</p>
+      <a href="/frequent-flyer" class="btn-primary" style="margin-top: 24px;">Explore the Frequent Flyer Program</a>
+      <div style="margin-top: 20px;"><button class="link-btn" id="nm-signout">Sign out</button></div>
+    </div>
+
   </section>
 
 </main>
@@ -129,9 +162,7 @@
     <div>
       <div class="footer-brand-mark">The Zion Gathering</div>
       <div class="footer-brand-tag">By Zion Media</div>
-      <p class="footer-brand-text">
-        Sacred retreats for serious students of the restoration. Brought to you by the Zion Media community.
-      </p>
+      <p class="footer-brand-text">Sacred retreats for serious students of the restoration. Brought to you by the Zion Media community.</p>
     </div>
     <div>
       <div class="footer-col-title">Gatherings</div>
@@ -146,7 +177,6 @@
       <div class="footer-col-title">Members</div>
       <div class="footer-links">
         <a href="/members">Member Area</a>
-        <a href="/members#rsvp">RSVP to a Gathering</a>
         <a href="/contact">Contact</a>
         <a href="https://www.youtube.com/@ZionMedia_" target="_blank" rel="noopener">Zion Media on YouTube</a>
       </div>
@@ -156,6 +186,138 @@
     &copy; 2026 The Zion Gathering &middot; Brought to you by Zion Media
   </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  var SUPABASE_URL = 'https://hnxkdtuisagmzhgjpxol.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_7PPF5DhTU-K2x-y8xy5IaA_sK9mesxI';
+  var GATHERINGS = ['Sons of Levi - Aug 2026', 'Oaxaca, Mexico - Nov 2026', 'Jerusalem & Egypt - Aug 2027'];
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  var $ = function (id) { return document.getElementById(id); };
+  var views = ['v-loading', 'v-auth', 'v-member', 'v-nonmember'];
+  function show(view) { views.forEach(function (v) { $(v).hidden = (v !== view); }); }
+  function setMsg(el, text, kind) { el.textContent = text || ''; el.className = 'msg' + (kind ? ' msg-' + kind : ''); }
+
+  // ---- Auth form: toggle sign in / sign up ----
+  var mode = 'signin';
+  function applyMode() {
+    var up = mode === 'signup';
+    $('auth-heading').textContent = up ? 'Create your member login' : 'Member sign in';
+    $('auth-submit').textContent = up ? 'Create account' : 'Sign in';
+    $('f-name').hidden = !up;
+    $('i-pass').setAttribute('autocomplete', up ? 'new-password' : 'current-password');
+    $('switch-line').innerHTML = up
+      ? 'Already have a login? <a id="auth-switch">Sign in</a>'
+      : 'New here? <a id="auth-switch">Create your member login</a>';
+    $('auth-switch').onclick = function () { mode = up ? 'signin' : 'signup'; applyMode(); setMsg($('auth-msg'), ''); };
+  }
+
+  $('auth-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var email = $('i-email').value.trim().toLowerCase();
+    var pass = $('i-pass').value;
+    var btn = $('auth-submit'); btn.disabled = true;
+    setMsg($('auth-msg'), 'One moment…');
+    try {
+      if (mode === 'signup') {
+        var name = $('i-name').value.trim();
+        var res = await sb.auth.signUp({ email: email, password: pass, options: { data: { full_name: name } } });
+        if (res.error) throw res.error;
+        if (!res.data.session) {
+          setMsg($('auth-msg'), 'Account created. Check your email to confirm, then sign in.', 'ok');
+          mode = 'signin'; applyMode();
+        }
+        // if session present, onAuthStateChange renders the member view
+      } else {
+        var r = await sb.auth.signInWithPassword({ email: email, password: pass });
+        if (r.error) throw r.error;
+      }
+    } catch (err) {
+      setMsg($('auth-msg'), err.message || 'Something went wrong.', 'err');
+    } finally { btn.disabled = false; }
+  });
+
+  // ---- Sign out ----
+  async function signOut() { await sb.auth.signOut(); }
+  $('nav-signout').onclick = function (e) { e.preventDefault(); signOut(); };
+  $('member-signout').onclick = signOut;
+  $('nm-signout').onclick = signOut;
+
+  // ---- RSVP ----
+  $('r-guest').addEventListener('change', function () { $('f-guestname').hidden = !this.checked; });
+  $('rsvp-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var session = (await sb.auth.getSession()).data.session;
+    if (!session) return;
+    var btn = $('rsvp-submit'); btn.disabled = true; setMsg($('rsvp-msg'), 'Saving your RSVP…');
+    var row = {
+      member_email: session.user.email,
+      gathering: $('r-gathering').value,
+      bringing_guest: $('r-guest').checked,
+      guest_name: $('r-guest').checked ? ($('r-guestname').value.trim() || null) : null,
+      room_preference: $('r-room').value.trim() || null,
+      notes: $('r-notes').value.trim() || null
+    };
+    var ins = await sb.from('rsvps').insert(row);
+    btn.disabled = false;
+    if (ins.error) { setMsg($('rsvp-msg'), ins.error.message, 'err'); return; }
+    setMsg($('rsvp-msg'), 'Your place is reserved. We&rsquo;ll confirm by email.', 'ok');
+    $('rsvp-form').reset(); $('f-guestname').hidden = true;
+    loadRsvps(session.user.email);
+  });
+
+  async function loadRsvps(email) {
+    var res = await sb.from('rsvps').select('*').order('created_at', { ascending: false });
+    var list = $('rsvp-list');
+    if (res.error) { list.innerHTML = '<p class="muted" style="text-align:center;">Could not load your reservations.</p>'; return; }
+    if (!res.data.length) { list.innerHTML = '<p class="muted" style="text-align:center; font-style:italic;">No reservations yet &mdash; RSVP above when a gathering speaks to you.</p>'; return; }
+    list.innerHTML = res.data.map(function (r) {
+      var meta = [];
+      if (r.bringing_guest) meta.push('+ guest' + (r.guest_name ? ' (' + r.guest_name + ')' : ''));
+      if (r.room_preference) meta.push('room: ' + r.room_preference);
+      return '<div class="rsvp-row"><div><div class="rsvp-row-g">' + esc(r.gathering) + '</div>' +
+        (meta.length ? '<div class="rsvp-row-meta">' + esc(meta.join(' · ')) + '</div>' : '') +
+        '</div><button class="link-btn" data-cancel="' + r.id + '">Cancel</button></div>';
+    }).join('');
+    list.querySelectorAll('[data-cancel]').forEach(function (b) {
+      b.onclick = async function () {
+        if (!confirm('Cancel this reservation?')) return;
+        await sb.from('rsvps').delete().eq('id', b.getAttribute('data-cancel'));
+        loadRsvps(email);
+      };
+    });
+  }
+
+  function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+
+  // ---- Render based on auth + membership ----
+  async function render() {
+    var session = (await sb.auth.getSession()).data.session;
+    if (!session) { $('hdr-name').textContent = ''; $('nav-signout').hidden = true; applyMode(); show('v-auth'); return; }
+    $('nav-signout').hidden = false;
+    var email = session.user.email;
+    var m = await sb.from('members').select('*').eq('email', email).maybeSingle();
+    if (m.data && m.data.active) {
+      var first = (m.data.full_name || '').split(' ')[0];
+      $('hdr-name').textContent = first ? ', ' + first : ', member';
+      $('member-tier').textContent = (m.data.tier === 'liahona' ? 'Liahona' : 'Milestone') + ' Member';
+      $('r-gathering').innerHTML = '<option value="" disabled selected>Choose a gathering…</option>' +
+        GATHERINGS.map(function (g) { return '<option>' + esc(g) + '</option>'; }).join('');
+      show('v-member');
+      loadRsvps(email);
+    } else {
+      $('hdr-name').textContent = '';
+      $('nm-email').textContent = email;
+      show('v-nonmember');
+    }
+  }
+
+  sb.auth.onAuthStateChange(function () { render(); });
+  render();
+})();
+</script>
 
 </body>
 </html>
