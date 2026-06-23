@@ -19,7 +19,7 @@
   .msg { margin-top: 16px; font-size: 14px; line-height: 1.5; }
   .msg-err { color: #9B2226; }
   .msg-ok { color: var(--burgundy); }
-  .switch-line { margin-top: 22px; font-size: 14px; color: var(--ink-soft); text-align: center; }
+  .switch-line { margin-top: 18px; font-size: 14px; color: var(--ink-soft); text-align: center; }
   .switch-line a { color: var(--burgundy); cursor: pointer; }
   .tier-pill { display: inline-block; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 700; color: var(--parchment); background: var(--burgundy); padding: 6px 16px; border-radius: 999px; }
   .rsvp-row { border: 1px solid var(--hair); background: var(--parchment); padding: 18px 20px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
@@ -56,9 +56,9 @@
   <!-- PAGE HEADER -->
   <section class="page-header">
     <div class="page-eyebrow">Member Area</div>
-    <h1 class="page-title">Welcome<em id="hdr-name"></em>.</h1>
-    <p class="page-subtitle" id="hdr-sub">
-      Your standing seat at every gathering &mdash; this is your home base.
+    <h1 class="page-title" id="page-title">Welcome back.</h1>
+    <p class="page-subtitle" id="page-sub">
+      Your member area for The Zion Gathering &mdash; sign in to RSVP to gatherings.
     </p>
     <div class="page-rule"></div>
   </section>
@@ -70,30 +70,29 @@
       Loading your member area&hellip;
     </div>
 
-    <!-- SIGNED OUT: SIGN IN / SIGN UP -->
+    <!-- SIGNED OUT / RESET: AUTH CARD -->
     <div id="v-auth" hidden>
       <div class="auth-card">
         <h2 id="auth-heading">Member sign in</h2>
-        <p class="muted" style="font-size: 15px; line-height: 1.55; margin: 0;">Sign in to RSVP to gatherings. Use the email you joined with.</p>
+        <p class="muted" id="auth-sub" style="font-size: 15px; line-height: 1.55; margin: 0;">Sign in to RSVP to gatherings. Use the email you joined with.</p>
         <form id="auth-form" autocomplete="on">
           <div class="field" id="f-name" hidden>
             <label for="i-name">Full name</label>
             <input type="text" id="i-name" autocomplete="name">
           </div>
-          <div class="field">
+          <div class="field" id="f-email">
             <label for="i-email">Email</label>
-            <input type="email" id="i-email" autocomplete="email" required>
+            <input type="email" id="i-email" autocomplete="email">
           </div>
-          <div class="field">
-            <label for="i-pass">Password</label>
-            <input type="password" id="i-pass" autocomplete="current-password" required minlength="8">
+          <div class="field" id="f-pass">
+            <label for="i-pass" id="lbl-pass">Password</label>
+            <input type="password" id="i-pass" autocomplete="current-password">
           </div>
           <button type="submit" class="btn-primary full-btn" id="auth-submit">Sign in</button>
         </form>
         <div class="msg" id="auth-msg"></div>
-        <div class="switch-line" id="switch-line">
-          New here? <a id="auth-switch">Create your member login</a>
-        </div>
+        <div class="switch-line" id="forgot-line"><a id="forgot-link">Forgot your password?</a></div>
+        <div class="switch-line" id="switch-line">New here? <a id="auth-switch">Create your member login</a></div>
       </div>
     </div>
 
@@ -192,6 +191,7 @@
 (function () {
   var SUPABASE_URL = 'https://hnxkdtuisagmzhgjpxol.supabase.co';
   var SUPABASE_KEY = 'sb_publishable_7PPF5DhTU-K2x-y8xy5IaA_sK9mesxI';
+  var MEMBERS_URL = 'https://www.theziongathering.com/members';
   var GATHERINGS = ['Sons of Levi - Aug 2026', 'Oaxaca, Mexico - Nov 2026', 'Jerusalem & Egypt - Aug 2027'];
   var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -199,19 +199,45 @@
   var views = ['v-loading', 'v-auth', 'v-member', 'v-nonmember'];
   function show(view) { views.forEach(function (v) { $(v).hidden = (v !== view); }); }
   function setMsg(el, text, kind) { el.textContent = text || ''; el.className = 'msg' + (kind ? ' msg-' + kind : ''); }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
 
-  // ---- Auth form: toggle sign in / sign up ----
+  // ---- Auth card modes: signin | signup | forgot | newpassword ----
   var mode = 'signin';
+  var recovering = false;
+  var CFG = {
+    signin:      { heading: 'Member sign in',          sub: 'Sign in to RSVP to gatherings. Use the email you joined with.', btn: 'Sign in',        name: false, email: true,  pass: true,  passLabel: 'Password',     passAuto: 'current-password', forgot: true,  sw: 'New here? <a id="auth-switch">Create your member login</a>' },
+    signup:      { heading: 'Create your member login', sub: 'Use the same email you purchased your membership with.',        btn: 'Create account', name: true,  email: true,  pass: true,  passLabel: 'Password',     passAuto: 'new-password',     forgot: false, sw: 'Already have a login? <a id="auth-switch">Sign in</a>' },
+    forgot:      { heading: 'Reset your password',      sub: 'Enter your email and we’ll send you a reset link.',         btn: 'Send reset link', name: false, email: true,  pass: false, passLabel: 'Password',     passAuto: 'current-password', forgot: false, sw: '<a id="auth-switch">Back to sign in</a>' },
+    newpassword: { heading: 'Set a new password',       sub: 'Choose a new password for your account.',                       btn: 'Update password', name: false, email: false, pass: true,  passLabel: 'New password', passAuto: 'new-password',     forgot: false, sw: '' }
+  };
   function applyMode() {
-    var up = mode === 'signup';
-    $('auth-heading').textContent = up ? 'Create your member login' : 'Member sign in';
-    $('auth-submit').textContent = up ? 'Create account' : 'Sign in';
-    $('f-name').hidden = !up;
-    $('i-pass').setAttribute('autocomplete', up ? 'new-password' : 'current-password');
-    $('switch-line').innerHTML = up
-      ? 'Already have a login? <a id="auth-switch">Sign in</a>'
-      : 'New here? <a id="auth-switch">Create your member login</a>';
-    $('auth-switch').onclick = function () { mode = up ? 'signin' : 'signup'; applyMode(); setMsg($('auth-msg'), ''); };
+    var c = CFG[mode];
+    $('auth-heading').textContent = c.heading;
+    $('auth-sub').textContent = c.sub;
+    $('auth-submit').textContent = c.btn;
+    $('f-name').hidden = !c.name;
+    $('f-email').hidden = !c.email;
+    $('f-pass').hidden = !c.pass;
+    $('lbl-pass').textContent = c.passLabel;
+    $('i-pass').setAttribute('autocomplete', c.passAuto);
+    $('forgot-line').hidden = !c.forgot;
+    $('switch-line').hidden = !c.sw;
+    $('switch-line').innerHTML = c.sw;
+    var sw = $('auth-switch');
+    if (sw) sw.onclick = function () { mode = (mode === 'signin') ? 'signup' : 'signin'; setMsg($('auth-msg'), ''); applyMode(); };
+  }
+  $('forgot-link').onclick = function () { mode = 'forgot'; setMsg($('auth-msg'), ''); applyMode(); };
+
+  function resendBlock(email, lead, kind) {
+    var m = $('auth-msg');
+    m.className = 'msg' + (kind ? ' msg-' + kind : '');
+    m.innerHTML = esc(lead) + ' <a id="resend-link" style="color:var(--burgundy);cursor:pointer;text-decoration:underline;">Resend it</a>.';
+    $('resend-link').onclick = async function () {
+      setMsg(m, 'Resending…');
+      var r = await sb.auth.resend({ type: 'signup', email: email, options: { emailRedirectTo: MEMBERS_URL } });
+      if (r.error) setMsg(m, r.error.message, 'err');
+      else setMsg(m, 'Sent! Check your inbox for the confirmation link.', 'ok');
+    };
   }
 
   $('auth-form').addEventListener('submit', async function (e) {
@@ -221,18 +247,30 @@
     var btn = $('auth-submit'); btn.disabled = true;
     setMsg($('auth-msg'), 'One moment…');
     try {
-      if (mode === 'signup') {
+      if (mode === 'forgot') {
+        if (!email) throw new Error('Enter your email first.');
+        var rf = await sb.auth.resetPasswordForEmail(email, { redirectTo: MEMBERS_URL });
+        if (rf.error) throw rf.error;
+        setMsg($('auth-msg'), 'If that email has an account, a reset link is on its way — click it to choose a new password.', 'ok');
+      } else if (mode === 'newpassword') {
+        if (pass.length < 8) throw new Error('Use at least 8 characters.');
+        var ru = await sb.auth.updateUser({ password: pass });
+        if (ru.error) throw ru.error;
+        recovering = false; mode = 'signin'; setMsg($('auth-msg'), '');
+        if (history.replaceState) history.replaceState(null, '', '/members');
+        render();
+      } else if (mode === 'signup') {
+        if (pass.length < 8) throw new Error('Use at least 8 characters.');
         var name = $('i-name').value.trim();
-        var res = await sb.auth.signUp({ email: email, password: pass, options: { data: { full_name: name }, emailRedirectTo: 'https://www.theziongathering.com/members' } });
-        if (res.error) throw res.error;
-        if (!res.data.session) {
-          setMsg($('auth-msg'), 'Account created! Check your email for the confirmation link - clicking it brings you right into your member area.', 'ok');
-          mode = 'signin'; applyMode();
-        }
-        // if session present, onAuthStateChange renders the member view
+        var rs = await sb.auth.signUp({ email: email, password: pass, options: { data: { full_name: name }, emailRedirectTo: MEMBERS_URL } });
+        if (rs.error) throw rs.error;
+        if (!rs.data.session) { resendBlock(email, 'Account created! Check your email for the confirmation link — clicking it brings you right in. Didn’t get it?', 'ok'); mode = 'signin'; }
       } else {
-        var r = await sb.auth.signInWithPassword({ email: email, password: pass });
-        if (r.error) throw r.error;
+        var si = await sb.auth.signInWithPassword({ email: email, password: pass });
+        if (si.error) {
+          if (/confirm/i.test(si.error.message)) { resendBlock(email, 'Your email isn’t confirmed yet.', 'err'); return; }
+          throw si.error;
+        }
       }
     } catch (err) {
       setMsg($('auth-msg'), err.message || 'Something went wrong.', 'err');
@@ -263,7 +301,7 @@
     var ins = await sb.from('rsvps').insert(row);
     btn.disabled = false;
     if (ins.error) { setMsg($('rsvp-msg'), ins.error.message, 'err'); return; }
-    setMsg($('rsvp-msg'), 'Your place is reserved. We&rsquo;ll confirm by email.', 'ok');
+    setMsg($('rsvp-msg'), 'Your place is reserved. We’ll confirm by email.', 'ok');
     $('rsvp-form').reset(); $('f-guestname').hidden = true;
     loadRsvps(session.user.email);
   });
@@ -275,10 +313,10 @@
     if (!res.data.length) { list.innerHTML = '<p class="muted" style="text-align:center; font-style:italic;">No reservations yet &mdash; RSVP above when a gathering speaks to you.</p>'; return; }
     list.innerHTML = res.data.map(function (r) {
       var meta = [];
-      if (r.bringing_guest) meta.push('+ guest' + (r.guest_name ? ' (' + r.guest_name + ')' : ''));
-      if (r.room_preference) meta.push('room: ' + r.room_preference);
+      if (r.bringing_guest) meta.push('+ guest' + (r.guest_name ? ' (' + esc(r.guest_name) + ')' : ''));
+      if (r.room_preference) meta.push('room: ' + esc(r.room_preference));
       return '<div class="rsvp-row"><div><div class="rsvp-row-g">' + esc(r.gathering) + '</div>' +
-        (meta.length ? '<div class="rsvp-row-meta">' + esc(meta.join(' · ')) + '</div>' : '') +
+        (meta.length ? '<div class="rsvp-row-meta">' + meta.join(' &middot; ') + '</div>' : '') +
         '</div><button class="link-btn" data-cancel="' + r.id + '">Cancel</button></div>';
     }).join('');
     list.querySelectorAll('[data-cancel]').forEach(function (b) {
@@ -290,31 +328,51 @@
     });
   }
 
-  function esc(s) { var d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
-
   // ---- Render based on auth + membership ----
   async function render() {
+    if (recovering) { mode = 'newpassword'; applyMode(); show('v-auth'); return; }
     var session = (await sb.auth.getSession()).data.session;
-    if (!session) { $('hdr-name').textContent = ''; $('nav-signout').hidden = true; applyMode(); show('v-auth'); return; }
+    if (!session) {
+      $('page-title').innerHTML = 'Welcome back.';
+      $('page-sub').textContent = 'Your member area for The Zion Gathering — sign in to RSVP to gatherings.';
+      $('nav-signout').hidden = true;
+      if (mode === 'newpassword') mode = 'signin';
+      applyMode(); show('v-auth'); return;
+    }
     $('nav-signout').hidden = false;
     var email = session.user.email;
     var m = await sb.from('members').select('*').eq('email', email).maybeSingle();
     if (m.data && m.data.active) {
       var first = (m.data.full_name || '').split(' ')[0];
-      $('hdr-name').textContent = first ? ', ' + first : ', member';
+      $('page-title').innerHTML = 'Welcome' + (first ? ', <em>' + esc(first) + '</em>' : '') + '.';
+      $('page-sub').textContent = 'Your standing seat at every gathering — this is your home base.';
       $('member-tier').textContent = (m.data.tier === 'liahona' ? 'Liahona' : 'Milestone') + ' Member';
       $('r-gathering').innerHTML = '<option value="" disabled selected>Choose a gathering…</option>' +
         GATHERINGS.map(function (g) { return '<option>' + esc(g) + '</option>'; }).join('');
       show('v-member');
       loadRsvps(email);
     } else {
-      $('hdr-name').textContent = '';
+      $('page-title').innerHTML = 'Welcome.';
+      $('page-sub').textContent = '';
       $('nm-email').textContent = email;
       show('v-nonmember');
     }
   }
 
-  sb.auth.onAuthStateChange(function () { render(); });
+  sb.auth.onAuthStateChange(function (event) {
+    if (event === 'PASSWORD_RECOVERY') {
+      recovering = true; mode = 'newpassword'; setMsg($('auth-msg'), '');
+      $('page-title').innerHTML = 'Reset your password.';
+      $('page-sub').textContent = '';
+      $('nav-signout').hidden = true;
+      applyMode(); show('v-auth');
+      return;
+    }
+    render();
+  });
+
+  // Arriving on a recovery link: hold the new-password view (avoids a member-view flash).
+  if (/type=recovery/.test(window.location.hash)) recovering = true;
   render();
 })();
 </script>
