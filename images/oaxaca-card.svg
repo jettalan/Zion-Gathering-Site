@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Oaxaca, Mexico Gathering — A Book of Mormon Tour — November 3 to 11, 2026">
+
+  <defs>
+    <!-- Premium gold vignette: warm light gold center fading to antique gold -->
+    <radialGradient id="goldbg" cx="50%" cy="34%" r="88%">
+      <stop offset="0%" stop-color="#DBBD78"/>
+      <stop offset="48%" stop-color="#C09A4C"/>
+      <stop offset="100%" stop-color="#92702E"/>
+    </radialGradient>
+    <!-- Metallic sheen overlay -->
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="42%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#3D1320" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gold background -->
+  <rect width="1200" height="750" fill="url(#goldbg)"/>
+  <rect width="1200" height="750" fill="url(#sheen)"/>
+
+  <!-- Premium inner pinstripe -->
+  <rect x="34" y="34" width="1132" height="682" fill="none" stroke="#3D1320" stroke-width="1" opacity="0.35"/>
+
+  <!-- Corner brackets - deep burgundy L-shapes -->
+  <g stroke="#3D1320" stroke-width="1.6" fill="none" stroke-linecap="square">
+    <path d="M 56 100 L 56 56 L 100 56"/>
+    <path d="M 1100 56 L 1144 56 L 1144 100"/>
+    <path d="M 56 650 L 56 694 L 100 694"/>
+    <path d="M 1100 694 L 1144 694 L 1144 650"/>
+  </g>
+
+  <!-- Sigil: Seal of Melchizedek — two overlapping squares forming an eight-pointed star -->
+  <g transform="translate(600, 145)" stroke="#3D1320" stroke-width="2" fill="none" stroke-linejoin="miter">
+    <rect x="-23" y="-23" width="46" height="46"/>
+    <rect x="-23" y="-23" width="46" height="46" transform="rotate(45)"/>
+  </g>
+
+  <!-- Eyebrow rule with vertical end caps -->
+  <g stroke="#3D1320" stroke-width="1" fill="none" opacity="0.85">
+    <line x1="250" y1="228" x2="380" y2="228"/>
+    <line x1="820" y1="228" x2="950" y2="228"/>
+    <line x1="250" y1="228" x2="250" y2="242"/>
+    <line x1="950" y1="228" x2="950" y2="242"/>
+  </g>
+
+  <!-- Eyebrow text -->
+  <text x="600" y="236" text-anchor="middle"
+        font-family="'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+        font-size="20" letter-spacing="6" fill="#3D1320" font-weight="600">
+    A BOOK OF MORMON TOUR
+  </text>
+
+  <!-- Main title -->
+  <text x="600" y="385" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="138" fill="#3D1320" font-weight="600" letter-spacing="-1">
+    Oaxaca
+  </text>
+
+  <!-- Subtitle - italic deep wine serif -->
+  <text x="600" y="495" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="100" fill="#5C1F2E" font-weight="400" font-style="italic">
+    Mexico
+  </text>
+
+  <!-- Decorative rule with diamond ornament -->
+  <g stroke="#3D1320" stroke-width="1" fill="none">
+    <line x1="430" y1="555" x2="565" y2="555"/>
+    <line x1="635" y1="555" x2="770" y2="555"/>
+  </g>
+  <path d="M 600 545 L 612 555 L 600 565 L 588 555 Z" fill="#3D1320"/>
+
+  <!-- Date -->
+  <text x="600" y="615" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="34" fill="#3D1320" font-weight="600">
+    November 3 &#x2014; 11, 2026
+  </text>
+
+  <!-- Location -->
+  <text x="600" y="660" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="24" fill="#5C1F2E" font-style="italic" letter-spacing="1">
+    Oaxaca &amp; Puerto Escondido
+  </text>
+
+</svg>

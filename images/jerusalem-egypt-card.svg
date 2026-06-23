@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Jerusalem and Egypt Gathering — A Holy Land Journey beneath the August 2, 2027 eclipse — July 28 to August 7, 2027">
+
+  <defs>
+    <!-- Premium gold vignette: warm light gold center fading to antique gold -->
+    <radialGradient id="goldbg" cx="50%" cy="34%" r="88%">
+      <stop offset="0%" stop-color="#DBBD78"/>
+      <stop offset="48%" stop-color="#C09A4C"/>
+      <stop offset="100%" stop-color="#92702E"/>
+    </radialGradient>
+    <!-- Metallic sheen overlay -->
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="42%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#3D1320" stop-opacity="0.08"/>
+    </linearGradient>
+    <!-- Soft corona glow for the eclipse -->
+    <radialGradient id="corona" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#FBF3DE" stop-opacity="0"/>
+      <stop offset="82%" stop-color="#FBF3DE" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FBF3DE" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Gold background -->
+  <rect width="1200" height="750" fill="url(#goldbg)"/>
+  <rect width="1200" height="750" fill="url(#sheen)"/>
+
+  <!-- Premium inner pinstripe -->
+  <rect x="34" y="34" width="1132" height="682" fill="none" stroke="#3D1320" stroke-width="1" opacity="0.35"/>
+
+  <!-- Corner brackets - deep burgundy L-shapes -->
+  <g stroke="#3D1320" stroke-width="1.6" fill="none" stroke-linecap="square">
+    <path d="M 56 100 L 56 56 L 100 56"/>
+    <path d="M 1100 56 L 1144 56 L 1144 100"/>
+    <path d="M 56 650 L 56 694 L 100 694"/>
+    <path d="M 1100 694 L 1144 694 L 1144 650"/>
+  </g>
+
+  <!-- Icon: total eclipse — corona glow, bright totality ring, dark moon, diamond-ring point -->
+  <g transform="translate(600, 150)">
+    <circle r="78" fill="url(#corona)"/>
+    <circle r="58" fill="none" stroke="#FBF3DE" stroke-width="1" opacity="0.35"/>
+    <circle r="48" fill="#3D1320" stroke="#FBF3DE" stroke-width="3"/>
+    <circle cx="34" cy="-34" r="5.5" fill="#FBF3DE"/>
+  </g>
+
+  <!-- Eyebrow rule with vertical end caps -->
+  <g stroke="#3D1320" stroke-width="1" fill="none" opacity="0.85">
+    <line x1="250" y1="258" x2="380" y2="258"/>
+    <line x1="820" y1="258" x2="950" y2="258"/>
+    <line x1="250" y1="258" x2="250" y2="272"/>
+    <line x1="950" y1="258" x2="950" y2="272"/>
+  </g>
+
+  <!-- Eyebrow text -->
+  <text x="600" y="266" text-anchor="middle"
+        font-family="'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+        font-size="20" letter-spacing="6" fill="#3D1320" font-weight="600">
+    A HOLY LAND JOURNEY
+  </text>
+
+  <!-- Main title -->
+  <text x="600" y="410" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="126" fill="#3D1320" font-weight="600" letter-spacing="-1">
+    Jerusalem
+  </text>
+
+  <!-- Subtitle - italic deep wine serif -->
+  <text x="600" y="512" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="94" fill="#5C1F2E" font-weight="400" font-style="italic">
+    &amp; Egypt
+  </text>
+
+  <!-- Decorative rule with diamond ornament -->
+  <g stroke="#3D1320" stroke-width="1" fill="none">
+    <line x1="430" y1="568" x2="565" y2="568"/>
+    <line x1="635" y1="568" x2="770" y2="568"/>
+  </g>
+  <path d="M 600 558 L 612 568 L 600 578 L 588 568 Z" fill="#3D1320"/>
+
+  <!-- Date -->
+  <text x="600" y="626" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="33" fill="#3D1320" font-weight="600">
+    July 28 &#x2014; August 7, 2027
+  </text>
+
+  <!-- Location -->
+  <text x="600" y="670" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="24" fill="#5C1F2E" font-style="italic" letter-spacing="1">
+    The Holy Land &#183; Beneath the Great Eclipse
+  </text>
+
+</svg>
