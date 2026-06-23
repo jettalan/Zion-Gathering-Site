@@ -223,10 +223,10 @@
     try {
       if (mode === 'signup') {
         var name = $('i-name').value.trim();
-        var res = await sb.auth.signUp({ email: email, password: pass, options: { data: { full_name: name } } });
+        var res = await sb.auth.signUp({ email: email, password: pass, options: { data: { full_name: name }, emailRedirectTo: 'https://www.theziongathering.com/members' } });
         if (res.error) throw res.error;
         if (!res.data.session) {
-          setMsg($('auth-msg'), 'Account created. Check your email to confirm, then sign in.', 'ok');
+          setMsg($('auth-msg'), 'Account created! Check your email for the confirmation link - clicking it brings you right into your member area.', 'ok');
           mode = 'signin'; applyMode();
         }
         // if session present, onAuthStateChange renders the member view
