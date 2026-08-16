@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sons of Levi Gathering — Fathers &amp; Sons — October 22 to 25, 2026 — The Monster Mansion, Bear Lake, Utah">
+
+  <defs>
+    <!-- Radial vignette: lighter burgundy in upper-center, deeper at edges -->
+    <radialGradient id="vignette" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#7A2A3D"/>
+      <stop offset="55%" stop-color="#5C1F2E"/>
+      <stop offset="100%" stop-color="#3D1320"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Burgundy background -->
+  <rect width="1200" height="750" fill="url(#vignette)"/>
+
+  <!-- Corner brackets - thin gold L-shapes -->
+  <g stroke="#B08840" stroke-width="1.5" fill="none" stroke-linecap="square">
+    <path d="M 56 100 L 56 56 L 100 56"/>
+    <path d="M 1100 56 L 1144 56 L 1144 100"/>
+    <path d="M 56 650 L 56 694 L 100 694"/>
+    <path d="M 1100 694 L 1144 694 L 1144 650"/>
+  </g>
+
+  <!-- Sigil: Seal of Melchizedek — two overlapping squares forming an eight-pointed star -->
+  <g transform="translate(600, 145)" stroke="#B08840" stroke-width="1.6" fill="none" stroke-linejoin="miter">
+    <rect x="-22" y="-22" width="44" height="44"/>
+    <rect x="-22" y="-22" width="44" height="44" transform="rotate(45)"/>
+  </g>
+
+  <!-- Eyebrow rule with vertical end caps -->
+  <g stroke="#B08840" stroke-width="1" fill="none">
+    <line x1="240" y1="228" x2="400" y2="228"/>
+    <line x1="800" y1="228" x2="960" y2="228"/>
+    <line x1="240" y1="228" x2="240" y2="244"/>
+    <line x1="960" y1="228" x2="960" y2="244"/>
+  </g>
+
+  <!-- Eyebrow text -->
+  <text x="600" y="236" text-anchor="middle"
+        font-family="'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif"
+        font-size="22" letter-spacing="7" fill="#B08840" font-weight="500">
+    FATHERS &amp; SONS
+  </text>
+
+  <!-- Main title - large cream serif -->
+  <text x="600" y="385" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="130" fill="#F4ECDC" font-weight="500" letter-spacing="-1">
+    Sons of Levi
+  </text>
+
+  <!-- Subtitle "Gathering" - italic gold serif -->
+  <text x="600" y="495" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="100" fill="#B08840" font-weight="400" font-style="italic">
+    Gathering
+  </text>
+
+  <!-- Decorative rule with diamond ornament -->
+  <g stroke="#B08840" stroke-width="1" fill="none">
+    <line x1="450" y1="555" x2="580" y2="555"/>
+    <line x1="620" y1="555" x2="750" y2="555"/>
+  </g>
+  <!-- Center diamond -->
+  <path d="M 600 545 L 612 555 L 600 565 L 588 555 Z" fill="#B08840"/>
+
+  <!-- Date in cream serif -->
+  <text x="600" y="615" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="34" fill="#F4ECDC" font-weight="500">
+    October 22 &#x2014; 25, 2026
+  </text>
+
+  <!-- Location -->
+  <text x="600" y="660" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+        font-size="24" fill="#F4ECDC" font-style="italic" letter-spacing="1">
+    The Monster Mansion &#183; Bear Lake
+  </text>
+
+</svg>
